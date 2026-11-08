@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it" data-vista="giocatori">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlante – Costa della Spada</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='11' fill='%23c08a2a' stroke='%232b2118' stroke-width='2'/%3E%3Cpath fill='%232b2118' d='M5 17 6.2 8.5l3.5 3.2L12 6l2.3 5.7 3.5-3.2L19 17z'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="vendor/leaflet-1.9.4/leaflet.css">
+  <link rel="stylesheet" href="stile.css">
+</head>
+<body>
+  <!-- Icone (24x24, colore = currentColor) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-corona" viewBox="0 0 24 24"><path fill="currentColor" d="M3 17 4.6 7l4.6 4.2L12 4l2.8 7.2L19.4 7 21 17zM3 18.5h18V21H3z"/></symbol>
+    <symbol id="i-torre" viewBox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" d="M5 21V7h2V4h2.5v3h1.5V4h2v3h1.5V4H17v3h2v14zm5 0h4v-3.5a2 2 0 0 0-4 0z"/></symbol>
+    <symbol id="i-casa" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21v-9.5L12 4l8 7.5V21h-5.5v-5.5h-5V21z"/></symbol>
+    <symbol id="i-scudo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5 20 5.5v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10v-6z"/></symbol>
+    <symbol id="i-rovina" viewBox="0 0 24 24"><path fill="currentColor" d="M4 19h16v2.5H4zM6 18V7.5h3.5V18zm8.5 0v-6.2l3.5-1.3V18zM5 6h5.5l-.8-2h-3.9z"/></symbol>
+    <symbol id="i-monti" viewBox="0 0 24 24"><path fill="currentColor" d="M1.5 20 9 6.5l4.2 7.4L16 9.5l6.5 10.5z"/></symbol>
+    <symbol id="i-mappa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20zM9 4v13.5M15 6.5V20"/></symbol>
+    <symbol id="i-cerca" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5 20 20"/></symbol>
+    <symbol id="i-mirino" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 19a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM12 2v5M12 17v5M2 12h5M17 12h5"/></symbol>
+    <symbol id="i-indietro" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-piu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-meno" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M5 12h14"/></symbol>
+    <symbol id="i-intera" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></symbol>
+    <symbol id="i-veduta" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" d="M3 5h18v14H3z"/><path fill="currentColor" d="m5 17 4.5-6 3 4 2-2.5L19 17z"/><circle cx="16" cy="8.5" r="1.6" fill="currentColor"/></symbol>
+    <symbol id="i-spillo" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></symbol>
+  </svg>
+
+  <aside id="pannello" aria-label="Dettagli del luogo">
+    <header class="testata">
+      <p class="sopratitolo">Atlante della campagna</p>
+      <a id="indietro" class="indietro" href="#/" hidden>
+        <svg class="icona" aria-hidden="true"><use href="#i-indietro"/></svg>
+        <span id="indietro-testo">Torna alla regione</span>
+      </a>
+      <h1 id="titolo">Caricamento…</h1>
+      <p id="sottotitolo" class="sottotitolo"></p>
+      <div class="fregio" aria-hidden="true"></div>
+      <p id="descrizione" class="descrizione"></p>
+      <div id="vedute" class="vedute" hidden></div>
+      <p id="avviso" class="avviso" hidden></p>
+    </header>
+
+    <label class="cerca">
+      <svg class="icona" aria-hidden="true"><use href="#i-cerca"/></svg>
+      <span class="sr-only">Cerca luoghi e punti d'interesse</span>
+      <input id="cerca" type="search" placeholder="Cerca luoghi e punti d'interesse…" autocomplete="off">
+    </label>
+
+    <h2 id="intestazione-elenco" class="intestazione-elenco"></h2>
+    <ul id="elenco" class="elenco"></ul>
+
+    <footer id="legenda" class="legenda" hidden></footer>
+  </aside>
+
+  <div id="area-mappa">
+    <main id="mappa" aria-label="Mappa interattiva"></main>
+    <nav id="livello" class="livello" aria-label="Livello della mappa"></nav>
+    <div id="velo" class="velo" aria-hidden="true"></div>
+  </div>
+
+  <!-- Controlli spostati dentro la mappa da app.js -->
+  <div id="controlli-zoom" class="controlli">
+    <button type="button" data-azione="piu" aria-label="Ingrandisci" title="Ingrandisci">
+      <svg class="icona" aria-hidden="true"><use href="#i-piu"/></svg>
+    </button>
+    <button type="button" data-azione="meno" aria-label="Rimpicciolisci" title="Rimpicciolisci">
+      <svg class="icona" aria-hidden="true"><use href="#i-meno"/></svg>
+    </button>
+    <button type="button" data-azione="intera" aria-label="Mostra tutta la mappa" title="Mostra tutta la mappa">
+      <svg class="icona" aria-hidden="true"><use href="#i-intera"/></svg>
+    </button>
+  </div>
+
+  <div id="controlli-editor" class="controlli editor-strumenti">
+    <button id="editor" type="button" aria-pressed="false"
+            title="Modalità editor (tasto E): clic sulla mappa per copiare le coordinate">
+      <svg class="icona" aria-hidden="true"><use href="#i-mirino"/></svg>
+      <span>Coordinate</span>
+    </button>
+    <output id="cursore" hidden></output>
+  </div>
+
+  <!-- Illustrazione a tutto schermo (Esc o clic fuori per chiudere) -->
+  <dialog id="lightbox" class="lightbox" aria-labelledby="lightbox-titolo">
+    <figure>
+      <img id="lightbox-immagine" src="" alt="">
+      <figcaption>
+        <strong id="lightbox-titolo"></strong>
+        <span id="lightbox-nota" class="nota"></span>
+      </figcaption>
+    </figure>
+    <button type="button" class="chiudi" data-chiudi aria-label="Chiudi l'illustrazione" title="Chiudi (Esc)">
+      <svg class="icona" aria-hidden="true"><use href="#i-piu"/></svg>
+    </button>
+  </dialog>
+
+  <script src="vendor/leaflet-1.9.4/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

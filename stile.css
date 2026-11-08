@@ -1,0 +1,899 @@
+:root {
+  --pergamena: #f1e6cf;
+  --pergamena-chiara: #fbf5e6;
+  --pergamena-scura: #e2d2b0;
+  --inchiostro: #2b2118;
+  --inchiostro-chiaro: #6b5a47;
+  --oro: #c08a2a;
+  --oro-chiaro: #f0cd78;
+  --rosso: #8e2a1f;
+  --viola: #4b2a6b;
+  --cornice: #231b15;
+  --ombra: 0 2px 10px rgba(20, 12, 4, 0.35);
+  --pannello: 340px;
+  --serif: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  font-family: var(--serif);
+  color: var(--inchiostro);
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: grid;
+  grid-template-columns: var(--pannello) 1fr;
+  background: var(--cornice);
+}
+
+.icona {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+  vertical-align: -0.15em;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 3px solid var(--oro);
+  outline-offset: 2px;
+}
+
+/* ================= Pannello ================= */
+
+#pannello {
+  position: relative;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.4rem 1.2rem 1rem;
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 250, 235, 0.9), transparent 60%),
+    radial-gradient(ellipse at 100% 100%, rgba(170, 130, 70, 0.18), transparent 55%),
+    var(--pergamena);
+  box-shadow: inset -10px 0 18px -12px rgba(60, 35, 10, 0.45), 4px 0 14px rgba(0, 0, 0, 0.45);
+}
+
+.testata {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sopratitolo {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--inchiostro-chiaro);
+}
+
+.indietro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: fit-content;
+  margin: 0.1rem 0 0.2rem -0.3rem;
+  padding: 0.2rem 0.6rem 0.2rem 0.3rem;
+  font-size: 0.9rem;
+  color: var(--rosso);
+  text-decoration: none;
+  border-radius: 999px;
+}
+
+.indietro:hover { background: rgba(142, 42, 31, 0.1); }
+
+#titolo {
+  margin: 0;
+  font-size: 1.7rem;
+  font-weight: normal;
+  font-variant: small-caps;
+  letter-spacing: 0.03em;
+  line-height: 1.1;
+}
+
+.sottotitolo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--inchiostro-chiaro);
+}
+
+.sottotitolo:empty { display: none; }
+
+/* Riga decorativa con rombo al centro */
+.fregio {
+  position: relative;
+  height: 12px;
+  margin: 0.2rem 0;
+}
+
+.fregio::before {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--inchiostro-chiaro) 20%, var(--inchiostro-chiaro) 80%, transparent);
+}
+
+.fregio::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: calc(50% - 4px);
+  width: 8px;
+  height: 8px;
+  background: var(--oro);
+  border: 1px solid var(--inchiostro);
+  transform: rotate(45deg);
+}
+
+.descrizione {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.avviso {
+  margin: 0.3rem 0 0;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  border: 1px dashed var(--inchiostro-chiaro);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.avviso code { font-size: 0.78rem; }
+
+/* ---------- Illustrazioni (vedute) ---------- */
+
+.vedute {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.vedute[hidden] { display: none; }
+
+.veduta {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  overflow: hidden;
+  font: inherit;
+  border: 1px solid var(--cornice);
+  border-radius: 8px;
+  background: var(--cornice);
+  box-shadow: var(--ombra);
+  cursor: zoom-in;
+}
+
+.veduta img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.veduta:hover img,
+.veduta:focus-visible img {
+  transform: scale(1.04);
+  filter: brightness(1.08);
+}
+
+.veduta:focus-visible {
+  outline: 2px solid var(--oro);
+  outline-offset: 2px;
+}
+
+.veduta .didascalia {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 1.4rem 0.6rem 0.45rem;
+  font-size: 0.85rem;
+  color: var(--pergamena-chiara);
+  text-align: left;
+  background: linear-gradient(180deg, transparent, rgba(20, 12, 4, 0.85));
+}
+
+.veduta .didascalia .icona {
+  width: 1em;
+  height: 1em;
+  color: var(--oro-chiaro);
+}
+
+.lightbox {
+  max-width: min(96vw, 1600px);
+  max-height: 96vh;
+  padding: 0;
+  overflow: visible;
+  color: var(--pergamena-chiara);
+  border: 0;
+  background: none;
+}
+
+.lightbox::backdrop {
+  background: rgba(15, 10, 6, 0.88);
+  backdrop-filter: blur(2px);
+}
+
+.lightbox figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(96vh - 4rem);
+  margin: 0 auto;
+  border: 1px solid var(--cornice);
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.lightbox figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.8rem;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.lightbox .nota {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--oro-chiaro);
+}
+
+.lightbox .chiudi {
+  position: absolute;
+  top: -0.8rem;
+  right: -0.8rem;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  color: var(--inchiostro);
+  border: 1px solid var(--cornice);
+  border-radius: 50%;
+  background: var(--pergamena);
+  box-shadow: var(--ombra);
+  cursor: pointer;
+}
+
+.lightbox .chiudi .icona { transform: rotate(45deg); }
+
+.lightbox .chiudi:focus-visible {
+  outline: 2px solid var(--oro);
+  outline-offset: 2px;
+}
+
+/* ---------- Ricerca ---------- */
+
+.cerca {
+  position: relative;
+  display: block;
+}
+
+.cerca .icona {
+  position: absolute;
+  top: 50%;
+  left: 0.7rem;
+  transform: translateY(-50%);
+  color: var(--inchiostro-chiaro);
+  pointer-events: none;
+}
+
+.cerca input {
+  width: 100%;
+  padding: 0.6rem 0.8rem 0.6rem 2.2rem;
+  font: inherit;
+  font-size: 0.95rem;
+  color: inherit;
+  border: 1px solid #c9b48c;
+  border-radius: 999px;
+  background: var(--pergamena-chiara);
+  box-shadow: inset 0 1px 3px rgba(60, 35, 10, 0.15);
+}
+
+.cerca input:focus { border-color: var(--oro); }
+
+/* ---------- Elenco ---------- */
+
+.intestazione-elenco {
+  margin: 0.3rem 0 -0.4rem;
+  font-size: 0.75rem;
+  font-weight: normal;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--inchiostro-chiaro);
+}
+
+.intestazione-elenco:empty { display: none; }
+
+.elenco {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.elenco button {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.7rem;
+  width: 100%;
+  padding: 0.5rem 0.55rem;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.elenco button:hover,
+.elenco button:focus-visible,
+.elenco li.attivo button {
+  background: rgba(255, 252, 242, 0.75);
+  border-color: #d6c29b;
+}
+
+.elenco li.attivo button { border-color: var(--oro); }
+
+.elenco .testo { min-width: 0; }
+
+.elenco .nome {
+  display: block;
+  font-size: 1.02rem;
+}
+
+.elenco .dettaglio {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.82rem;
+  line-height: 1.35;
+  color: var(--inchiostro-chiaro);
+}
+
+.elenco .vuoto {
+  padding: 0.5rem;
+  font-style: italic;
+  color: var(--inchiostro-chiaro);
+}
+
+/* Icona del tipo di luogo nell'elenco: stessa grafica del marker */
+.gettone {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.gettone .icona {
+  width: 18px;
+  height: 18px;
+}
+
+/* Numero del punto d'interesse, uguale allo spillo sulla mappa */
+.numero {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 50%;
+  background: var(--rosso);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.numero.segreto { background: var(--viola); }
+
+.senza-posizione .numero {
+  color: var(--inchiostro-chiaro);
+  background: none;
+  border: 1.5px dashed var(--inchiostro-chiaro);
+  box-shadow: none;
+}
+
+.risultato .numero {
+  color: var(--rosso);
+  background: none;
+  box-shadow: none;
+}
+
+/* Etichette "Mappa" / "Da scaricare" */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.12rem 0.5rem;
+  font-size: 0.7rem;
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+.chip .icona {
+  width: 0.95em;
+  height: 0.95em;
+}
+
+.chip-pronta {
+  color: var(--inchiostro);
+  background: linear-gradient(180deg, var(--oro-chiaro), var(--oro));
+  border: 1px solid #8a5d16;
+}
+
+.chip-da-scaricare {
+  color: var(--inchiostro-chiaro);
+  border: 1px dashed var(--inchiostro-chiaro);
+}
+
+.chip-assente {
+  color: var(--inchiostro-chiaro);
+  border: 1px solid #c9b48c;
+}
+
+.chip-segreto {
+  color: #fff;
+  background: var(--viola);
+  border: 1px solid #2f1945;
+}
+
+.elenco .fine {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.con-veduta {
+  display: inline-grid;
+  color: var(--inchiostro-chiaro);
+}
+
+/* Luogo non ancora posizionato sulla mappa regionale */
+.senza-posizione .gettone {
+  opacity: 0.75;
+  outline: 1.5px dashed var(--inchiostro-chiaro);
+  outline-offset: 1px;
+}
+
+.elenco li.segreto .gettone { color: var(--viola); }
+
+/* ---------- Legenda ---------- */
+
+.legenda {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  font-size: 0.82rem;
+  color: var(--inchiostro-chiaro);
+  border-top: 1px solid #d6c29b;
+}
+
+.legenda div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.legenda .gettone {
+  width: 24px;
+  height: 24px;
+}
+
+.legenda .gettone .icona {
+  width: 13px;
+  height: 13px;
+}
+
+/* ================= Mappa ================= */
+
+#area-mappa {
+  position: relative;
+  min-height: 0;
+}
+
+#mappa {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, #3a2d22 0%, var(--cornice) 75%);
+}
+
+#mappa.editor,
+#mappa.editor .leaflet-interactive { cursor: crosshair; }
+
+.leaflet-container {
+  font: inherit;
+  font-family: var(--serif);
+}
+
+/* Velo per la dissolvenza nel cambio di mappa */
+.velo {
+  position: absolute;
+  inset: 0;
+  z-index: 900;
+  background: var(--cornice);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.velo.attivo { opacity: 1; }
+
+/* ---------- Indicatore del livello (in alto sulla mappa) ---------- */
+
+.livello {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.95rem;
+  border: 1px solid #c9b48c;
+  border-radius: 999px;
+  background: rgba(251, 245, 230, 0.95);
+  box-shadow: var(--ombra);
+}
+
+.livello:empty { display: none; }
+
+.livello a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--rosso);
+  text-decoration: none;
+}
+
+.livello a:hover { text-decoration: underline; }
+
+.livello .separatore { color: var(--inchiostro-chiaro); }
+
+.livello .corrente {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-variant: small-caps;
+  font-size: 1.05rem;
+}
+
+/* ---------- Controlli ---------- */
+
+.controlli {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #c9b48c;
+  border-radius: 10px;
+  background: var(--pergamena-chiara);
+  box-shadow: var(--ombra);
+}
+
+.controlli button {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font: inherit;
+  color: var(--inchiostro);
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.controlli button + button { border-top: 1px solid #e0d1b0; }
+
+.controlli button:hover { background: var(--pergamena-scura); }
+
+.controlli button:disabled {
+  color: #b9a88a;
+  cursor: default;
+  background: none;
+}
+
+.controlli .icona {
+  width: 20px;
+  height: 20px;
+}
+
+.editor-strumenti {
+  flex-direction: row;
+  align-items: center;
+}
+
+.editor-strumenti button {
+  display: inline-flex;
+  gap: 0.4rem;
+  width: auto;
+  padding: 0 0.8rem;
+  font-size: 0.9rem;
+}
+
+.editor-strumenti button[aria-pressed="true"] {
+  color: #fff;
+  background: var(--rosso);
+}
+
+.editor-strumenti output {
+  padding: 0 0.8rem;
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  border-left: 1px solid #e0d1b0;
+}
+
+.leaflet-control-attribution {
+  font-size: 0.7rem;
+  background: rgba(251, 245, 230, 0.8) !important;
+  border-top-left-radius: 6px;
+}
+
+.leaflet-control-attribution a { color: var(--rosso); }
+
+/* ---------- Marker dei luoghi (mappa regionale) ---------- */
+
+.marker-luogo .gettone {
+  width: 100%;
+  height: 100%;
+}
+
+.stato-pronta {
+  color: var(--inchiostro);
+  background: radial-gradient(circle at 35% 30%, #f8dc8e, var(--oro) 65%, #8a5d16);
+  border: 2px solid var(--inchiostro);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 0 3px rgba(240, 205, 120, 0.45);
+}
+
+.stato-da-scaricare,
+.stato-assente {
+  color: var(--inchiostro-chiaro);
+  background: var(--pergamena-chiara);
+  border: 2px solid var(--inchiostro-chiaro);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.stato-da-scaricare { border-style: dashed; }
+
+/* Distintivo "ha una mappa interna" */
+.distintivo {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  display: grid;
+  place-items: center;
+  width: 17px;
+  height: 17px;
+  color: #fff;
+  border: 1.5px solid var(--pergamena-chiara);
+  border-radius: 50%;
+  background: var(--rosso);
+}
+
+.distintivo .icona {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.marker-luogo .gettone { transition: transform 0.15s ease; }
+
+.marker-luogo .gettone .icona {
+  width: 58%;
+  height: 58%;
+}
+
+.marker-luogo:hover .gettone,
+.marker-luogo:focus-visible .gettone,
+.marker-luogo.evidenziato .gettone { transform: scale(1.18); }
+
+.marker-luogo.evidenziato .gettone::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border: 2px solid var(--oro-chiaro);
+  border-radius: 50%;
+  animation: pulsa 1.2s ease-out infinite;
+}
+
+@keyframes pulsa {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.8); }
+}
+
+/* ---------- Spilli dei punti d'interesse (mappa della città) ---------- */
+
+.spillo {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--pergamena-chiara);
+  border-radius: 50% 50% 50% 0;
+  background: var(--rosso);
+  box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.5);
+  transform: rotate(-45deg);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.spillo b {
+  font-size: 0.78rem;
+  color: #fff;
+  transform: rotate(45deg);
+}
+
+.marker-poi.segreto .spillo { background: var(--viola); }
+
+.marker-poi:hover .spillo,
+.marker-poi:focus-visible .spillo,
+.marker-poi.evidenziato .spillo {
+  background: var(--oro);
+  transform: rotate(-45deg) scale(1.15);
+}
+
+.marker-poi:hover .spillo b,
+.marker-poi.evidenziato .spillo b { color: var(--inchiostro); }
+
+/* ---------- Schede (tooltip) ---------- */
+
+.leaflet-tooltip.scheda {
+  width: 270px;
+  padding: 0;
+  white-space: normal;
+  color: var(--inchiostro);
+  border: 1px solid var(--inchiostro-chiaro);
+  border-radius: 10px;
+  background: var(--pergamena-chiara);
+  box-shadow: 0 6px 18px rgba(20, 12, 4, 0.45);
+}
+
+.leaflet-tooltip-top.scheda::before { border-top-color: var(--inchiostro-chiaro); }
+
+.scheda-testa {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.8rem 0.3rem;
+}
+
+.scheda-testa .gettone {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+
+.scheda-testa .gettone .icona {
+  width: 15px;
+  height: 15px;
+}
+
+.scheda-testa .distintivo {
+  width: 14px;
+  height: 14px;
+  right: -4px;
+  bottom: -4px;
+}
+
+.scheda-testa .numero { flex: none; }
+
+.scheda-testa strong {
+  font-size: 1.1rem;
+  font-weight: normal;
+  font-variant: small-caps;
+  line-height: 1.1;
+}
+
+.scheda-testa .tipo {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--inchiostro-chiaro);
+}
+
+.scheda p {
+  margin: 0;
+  padding: 0 0.8rem 0.6rem;
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+.scheda-piede {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.78rem;
+  border-top: 1px dashed #c9b48c;
+  border-radius: 0 0 10px 10px;
+}
+
+.scheda-piede.stato-pronta {
+  color: var(--inchiostro);
+  background: linear-gradient(180deg, rgba(240, 205, 120, 0.55), rgba(192, 138, 42, 0.45));
+  border: 0;
+  border-top: 1px solid #c9a24f;
+  box-shadow: none;
+}
+
+.scheda-piede.stato-da-scaricare,
+.scheda-piede.stato-assente {
+  color: var(--inchiostro-chiaro);
+  background: none;
+  border: 0;
+  border-top: 1px dashed #c9b48c;
+  box-shadow: none;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip { background: var(--pergamena-chiara); }
+
+.leaflet-popup-content code { font-size: 0.95rem; }
+
+/* ================= Schermi stretti ================= */
+
+@media (max-width: 760px) {
+  body {
+    grid-template-columns: 1fr;
+    grid-template-rows: 58% 42%;
+  }
+
+  #pannello {
+    order: 2;
+    box-shadow: 0 -4px 14px rgba(0, 0, 0, 0.45);
+  }
+
+  #titolo { font-size: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

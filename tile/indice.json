@@ -1,0 +1,50 @@
+{
+  "baldurs-gate": {
+    "larghezza": 1538,
+    "altezza": 1022,
+    "zoomMax": 3,
+    "lato": 256
+  },
+  "candlekeep": {
+    "larghezza": 1065,
+    "altezza": 750,
+    "zoomMax": 3,
+    "lato": 256
+  },
+  "costa-della-spada": {
+    "larghezza": 1559,
+    "altezza": 1009,
+    "zoomMax": 3,
+    "lato": 256
+  },
+  "daggerford": {
+    "larghezza": 2113,
+    "altezza": 1731,
+    "zoomMax": 4,
+    "lato": 256
+  },
+  "elturel": {
+    "larghezza": 1063,
+    "altezza": 755,
+    "zoomMax": 3,
+    "lato": 256
+  },
+  "luskan": {
+    "larghezza": 1867,
+    "altezza": 969,
+    "zoomMax": 3,
+    "lato": 256
+  },
+  "neverwinter": {
+    "larghezza": 1440,
+    "altezza": 1015,
+    "zoomMax": 3,
+    "lato": 256
+  },
+  "waterdeep": {
+    "larghezza": 4643,
+    "altezza": 6953,
+    "zoomMax": 5,
+    "lato": 256
+  }
+}

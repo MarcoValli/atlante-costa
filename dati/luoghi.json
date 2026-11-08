@@ -1,0 +1,339 @@
+{
+  "regione": {
+    "id": "costa-della-spada",
+    "nome": "Costa della Spada e il Nord",
+    "mappa": "costa-della-spada",
+    "descrizione": "Faerûn occidentale, 1493 DR. Un anno dopo la notte del Netherbrain."
+  },
+  "luoghi": [
+    {
+      "id": "baldurs-gate",
+      "nome": "Baldur's Gate",
+      "tipo": "metropoli",
+      "coord": [
+        806,
+        612
+      ],
+      "mappa": "baldurs-gate",
+      "descrizione": "Porto mercantile a metà della costa, governato dal Consiglio dei Quattro e sorvegliato dal Pugno Fiammeggiante. Porta ancora le cicatrici della notte del Netherbrain.",
+      "illustrazioni": [
+        {
+          "file": "illustrazioni/baldurs-gate-citta-bassa.png",
+          "titolo": "La Città Bassa",
+          "alt": "Strada bagnata della Città Bassa: profughi sotto i portici, una pattuglia del Pugno Fiammeggiante, impalcature e, in fondo, gli alberi delle navi."
+        }
+      ],
+      "poi": [
+        {
+          "nome": "High Hall",
+          "coord": [
+            283,
+            300
+          ],
+          "descrizione": "Sede del Consiglio dei Quattro, nella Città Alta. Qui vicino si è combattuto lo scontro finale contro il Netherbrain."
+        },
+        {
+          "nome": "Watch Citadel",
+          "coord": [
+            140,
+            290
+          ],
+          "descrizione": "Quartier generale della Guardia, che sorveglia la Città Alta (il Pugno Fiammeggiante pensa al resto)."
+        },
+        {
+          "nome": "Ramazith's Tower",
+          "coord": [
+            185,
+            212
+          ],
+          "descrizione": "Torre di un mago nella Città Alta. Ci si arriva dal portale di Sorcerous Sundries."
+        },
+        {
+          "nome": "The Wide",
+          "coord": [
+            330,
+            212
+          ],
+          "descrizione": "La grande piazza del mercato tra Città Alta e Città Bassa."
+        },
+        {
+          "nome": "Black Dragon Gate",
+          "coord": [
+            228,
+            190
+          ],
+          "descrizione": "Porta settentrionale della Città Alta, verso la Città Esterna."
+        },
+        {
+          "nome": "Temples",
+          "coord": [
+            247,
+            347
+          ],
+          "descrizione": "Quartiere dei templi maggiori, nella Città Alta."
+        },
+        {
+          "nome": "High House of Wonders",
+          "coord": [
+            400,
+            383
+          ],
+          "descrizione": "Il grande tempio di Gond, dio delle invenzioni."
+        },
+        {
+          "nome": "Hall of Wonders",
+          "coord": [
+            385,
+            310
+          ],
+          "descrizione": "Museo delle meraviglie gondiane, tra congegni e invenzioni."
+        },
+        {
+          "nome": "Counting House",
+          "coord": [
+            433,
+            332
+          ],
+          "descrizione": "La banca della città: caveau, prestiti e debiti che non si dimenticano."
+        },
+        {
+          "nome": "Elfsong Tavern",
+          "coord": [
+            520,
+            317
+          ],
+          "descrizione": "Taverna della Città Bassa, famosa per il canto triste della sua elfa fantasma."
+        },
+        {
+          "nome": "Blushing Mermaid",
+          "coord": [
+            510,
+            180
+          ],
+          "descrizione": "Locanda malfamata vicino al porto, ritrovo di contrabbandieri."
+        },
+        {
+          "nome": "Sorcerous Sundries",
+          "coord": [
+            652,
+            172
+          ],
+          "descrizione": "Il negozio di magia più noto della città."
+        },
+        {
+          "nome": "Basilisk Gate",
+          "coord": [
+            685,
+            315
+          ],
+          "descrizione": "Porta orientale della Città Bassa, verso la Città Esterna."
+        },
+        {
+          "nome": "Gray Harbor",
+          "coord": [
+            465,
+            390
+          ],
+          "descrizione": "Il porto della città, cuore dei commerci e del contrabbando."
+        },
+        {
+          "nome": "Seatower of Balduran",
+          "coord": [
+            365,
+            525
+          ],
+          "descrizione": "Fortezza su un isolotto nel porto, in mano al Pugno Fiammeggiante."
+        },
+        {
+          "nome": "Little Calimshan",
+          "coord": [
+            882,
+            90
+          ],
+          "descrizione": "Quartiere della Città Esterna abitato da immigrati del Calimshan."
+        },
+        {
+          "nome": "Cliffside Cemetery",
+          "coord": [
+            872,
+            540
+          ],
+          "descrizione": "Il cimitero sulla scogliera, sopra il fiume Chionthar."
+        },
+        {
+          "nome": "Twin Songs",
+          "coord": [
+            1232,
+            530
+          ],
+          "descrizione": "Quartiere della Città Esterna con templi di culti stranieri e minori."
+        },
+        {
+          "nome": "Wyrm's Rock",
+          "coord": [
+            1370,
+            650
+          ],
+          "descrizione": "Fortezza sull'isola del ponte di Wyrm's Crossing, usata come prigione dal Pugno Fiammeggiante."
+        },
+        {
+          "nome": "Rivington",
+          "coord": [
+            1378,
+            812
+          ],
+          "descrizione": "Borgo sulla riva sud del Chionthar, oltre il ponte. Dopo BG3 accoglie molti profughi di Elturel."
+        }
+      ]
+    },
+    {
+      "id": "waterdeep",
+      "nome": "Waterdeep",
+      "tipo": "metropoli",
+      "coord": [
+        704,
+        375
+      ],
+      "mappa": "waterdeep",
+      "descrizione": "La Città degli Splendori, la più grande e ricca della costa, governata dai Signori Mascherati. Sotto c'è Undermountain.",
+      "poi": [
+        {
+          "nome": "Yawning Portal",
+          "descrizione": "Taverna con un pozzo al centro che scende a Undermountain."
+        },
+        {
+          "nome": "Palazzo di Waterdeep",
+          "descrizione": "Sede del governo e della Signora palese, Laeral Silverhand."
+        },
+        {
+          "nome": "Blackstaff Tower",
+          "descrizione": "Torre del Blackstaff, l'arcimago protettore della città."
+        },
+        {
+          "nome": "Città dei Morti",
+          "descrizione": "Il cimitero monumentale, chiuso di notte."
+        }
+      ]
+    },
+    {
+      "id": "neverwinter",
+      "nome": "Neverwinter",
+      "tipo": "metropoli",
+      "coord": [
+        621,
+        207
+      ],
+      "mappa": "neverwinter",
+      "descrizione": "Il Gioiello del Nord, ricostruito dopo l'eruzione del Monte Hotenow (1451 DR). Guidato dal Lord Protettore Dagult Neverember.",
+      "poi": []
+    },
+    {
+      "id": "luskan",
+      "nome": "Luskan",
+      "tipo": "città",
+      "coord": [
+        603,
+        137
+      ],
+      "mappa": "luskan",
+      "descrizione": "La Città delle Vele, porto di pirati comandato dai Grandi Capitani. Sotto ci sono le rovine di Illusk.",
+      "poi": []
+    },
+    {
+      "id": "candlekeep",
+      "nome": "Candlekeep",
+      "tipo": "fortezza",
+      "coord": [
+        793,
+        728
+      ],
+      "mappa": "candlekeep",
+      "descrizione": "Fortezza-biblioteca su una rupe. Per entrare bisogna donare un libro che non possiede.",
+      "poi": []
+    },
+    {
+      "id": "elturel",
+      "nome": "Elturel",
+      "tipo": "città",
+      "coord": [
+        923,
+        619
+      ],
+      "mappa": "elturel",
+      "descrizione": "Trascinata in Avernus dal patto con Zariel e poi tornata. Una città che ha visto l'Inferno.",
+      "poi": []
+    },
+    {
+      "id": "daggerford",
+      "nome": "Daggerford",
+      "tipo": "cittadina",
+      "coord": [
+        754,
+        408
+      ],
+      "mappa": "daggerford",
+      "descrizione": "Cittadina fortificata sulla Via della Costa, tra Waterdeep e Baldur's Gate.",
+      "poi": []
+    },
+    {
+      "id": "mirabar",
+      "nome": "Mirabar",
+      "tipo": "città",
+      "coord": [
+        677,
+        103
+      ],
+      "mappa": null,
+      "descrizione": "Città mineraria di umani e nani.",
+      "poi": []
+    },
+    {
+      "id": "silverymoon",
+      "nome": "Silverymoon",
+      "tipo": "città",
+      "coord": [
+        866,
+        156
+      ],
+      "mappa": null,
+      "descrizione": "La Gemma del Nord, città della magia e del sapere.",
+      "poi": []
+    },
+    {
+      "id": "mithral-hall",
+      "nome": "Mithral Hall",
+      "tipo": "fortezza",
+      "coord": [
+        829,
+        121
+      ],
+      "mappa": null,
+      "descrizione": "Roccaforte nanica di Bruenor Battlehammer.",
+      "poi": []
+    },
+    {
+      "id": "gauntlgrym",
+      "nome": "Gauntlgrym",
+      "tipo": "rovina",
+      "coord": [
+        640,
+        171
+      ],
+      "mappa": null,
+      "descrizione": "Antica città nanica sotto il Monte Hotenow, con un primordiale del fuoco imprigionato.",
+      "poi": []
+    },
+    {
+      "id": "dieci-citta",
+      "nome": "Dieci Città (Icewind Dale)",
+      "tipo": "regione",
+      "coord": [
+        566,
+        79
+      ],
+      "mappa": null,
+      "descrizione": "Terre gelide di Drizzt Do'Urden. Il capoluogo è Bryn Shander.",
+      "poi": []
+    }
+  ]
+}
